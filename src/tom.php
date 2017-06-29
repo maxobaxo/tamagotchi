@@ -6,12 +6,32 @@
         private $sleep;
         private $name;
 
-        function __construct ($food = 10, $play = 10 , $sleep = 10, $name)
+        function __construct ($name, $food = 10, $play = 10 , $sleep = 10)
         {
+            $this->name = $name;
             $this->food = $food;
             $this->play = $play;
             $this->sleep = $sleep;
-            $this->name = $name;
+        }
+
+        function setFood()
+        {
+            $this->food += (float) 1;
+        }
+
+        function setPlay()
+        {
+            $this->play += (float) 1;
+        }
+
+        function setSleep()
+        {
+            $this->sleep += (float) 1;
+        }
+
+        function setName()
+        {
+            $this->name = (string) 1;
         }
 
         function getFood()
@@ -33,25 +53,20 @@
             return $this->name;
         }
 
-        function setFood($new_food)
+        function save()
         {
-            $this->food = $new_food;
+            array_push($_SESSION['creature-life'], $this);
         }
 
-        function setPlay($new_play)
+        static function getAll()
         {
-            $this->play = $new_play;
-        }
-        function setSleep($new_sleep)
-        {
-            $this->sleep = $new_sleep;
+            return $_SESSION['creature-life'];
         }
 
-        function setName($new_name)
+        static function deleteAll()
         {
-            $this->name = (string) $new_name;
+            $_SESSION['creature-life'] = array();
         }
-
     }
 
  ?>

@@ -1,0 +1,26 @@
+<html>
+<head>
+</head>
+<body>
+    <h1>Here is your friend!</h1>
+    <p>Name: {{ start_game.getName }}</p>
+
+    <p>Play: {{ start_game.getPlay }}</p>
+    <form action='/play' method='post'>
+        <button type='submit' class='btn'>Let's Play!</button>
+    </form>
+
+    <p>Sleep: {{ start_game.getSleep }} </p>
+    <form action='/sleep' method='post'>
+        <button type='submit' class='btn'>Let's Rest!</button>
+    </form>
+
+    <p>Feedings: {{ start_game.getFood }} </p>
+    <form action='/eat' method='post'>
+        <button type='submit' class='btn'>Let's Eat!</button>
+    </form>
+    <form action="/">
+        <button type='submit' class='btn'>Reset Game</button>
+    </form>
+</body>
+</html>

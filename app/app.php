@@ -16,9 +16,43 @@
     ));
 
     $app->get("/", function() use ($app) {
+        Tamagotchi::deleteAll();
+        return $app['twig']->render('Tamagatchi.html.twig');
+    });
 
-    return $app['twig']->render('Tamagotchi.html.twig', array('creatures' => Tamagotchi::getAll()));
+    $app->get('/game', function() use ($app) {
+        $creature = new Tamagotchi($_GET['name'], 10, 10 , 10);
+        $creature->save();
 
+        return $app['twig']->render('game.html.twig', array('start_game' => $creature));
+    });
+
+    $app->post('/game', function() use ($app) {
+        $creatures = $_SESSION['creature-life'];
+        $creature = $creatures[0];
+
+        return $app['twig']->render('game.html.twig', array('start_game' => $creature));
+    });
+
+    $app->post('/play', function() use ($app) {
+        $creatures = $_SESSION['creature-life'];
+        $creature = $creatures[0];
+
+        return $app['twig']->render('play.html.twig', array('tom' => $creature));
+    });
+
+    $app->post('/eat', function() use ($app) {
+        $creatures = $_SESSION['creature-life'];
+        $creature = $creatures[0];
+
+        return $app['twig']->render('eat.html.twig', array('tom' => $creature));
+    });
+
+    $app->post('/sleep', function() use ($app) {
+        $creatures = $_SESSION['creature-life'];
+        $creature = $creatures[0];
+
+        return $app['twig']->render('sleep.html.twig', array('tom' => $creature));
     });
 
     return $app;
